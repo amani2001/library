@@ -2,9 +2,9 @@ spring:
   datasource:
 #   数据源基本配置
     username: root
-    password: 123456
+    password: 311
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.15.22:3306/mybatis
+    url: jdbc:mysql://39.108.71.48:3306/library
     type: com.alibaba.druid.pool.DruidDataSource
 #   数据源其他配置
     initialSize: 5
@@ -26,4 +26,9 @@ spring:
 mybatis:
   # 指定sql映射文件位置
   mapper-locations: classpath:mapper/*.xml
+server:
+  tomcat:
+    uri-encoding: utf-8
+thymeleaf:
+           cache: false
 

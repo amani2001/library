@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <!-- mysql的jar文件路径 -->
+    <classPathEntry location="C:\Users\C\Downloads\mysql-connector-java-5.0.8.jar" />
     <context id="Mysql" targetRuntime="MyBatis3Simple">
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
