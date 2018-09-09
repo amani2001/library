@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hniu.mapper.BookStatesMapper">
+  <resultMap id="BaseResultMap" type="com.hniu.entity.BookStates">
+    <id column="book_state_id" jdbcType="INTEGER" property="bookStateId" />
+    <result column="book_id" jdbcType="INTEGER" property="bookId" />
+    <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="borrow_number" jdbcType="SMALLINT" property="borrowNumber" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_book_states
+    where book_state_id = #{bookStateId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hniu.entity.BookStates">
+    insert into tbl_book_states (book_state_id, book_id, bar_code, 
+      state, borrow_number)
+    values (#{bookStateId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}, #{barCode,jdbcType=VARCHAR}, 
+      #{state,jdbcType=TINYINT}, #{borrowNumber,jdbcType=SMALLINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hniu.entity.BookStates">
+    update tbl_book_states
+    set book_id = #{bookId,jdbcType=INTEGER},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT},
+      borrow_number = #{borrowNumber,jdbcType=SMALLINT}
+    where book_state_id = #{bookStateId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select book_state_id, book_id, bar_code, state, borrow_number
+    from tbl_book_states
+    where book_state_id = #{bookStateId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select book_state_id, book_id, bar_code, state, borrow_number
+    from tbl_book_states
+  </select>
+</mapper>

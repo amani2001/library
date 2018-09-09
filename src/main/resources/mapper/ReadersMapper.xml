@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hniu.mapper.ReadersMapper">
+  <resultMap id="BaseResultMap" type="com.hniu.entity.Readers">
+    <id column="reader_id" jdbcType="INTEGER" property="readerId" />
+    <result column="reader_type_id" jdbcType="INTEGER" property="readerTypeId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="reader_name" jdbcType="VARCHAR" property="readerName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="expiration_time" jdbcType="TIMESTAMP" property="expirationTime" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="overdue_number" jdbcType="TINYINT" property="overdueNumber" />
+    <result column="reader_code" jdbcType="VARCHAR" property="readerCode" />
+    <result column="session_key" jdbcType="VARCHAR" property="sessionKey" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_readers
+    where reader_id = #{readerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hniu.entity.Readers">
+    insert into tbl_readers (reader_id, reader_type_id, role_id, 
+      reader_name, password, wechat, 
+      phone, address, id_card, 
+      birthday, sex, create_time, 
+      expiration_time, state, overdue_number, 
+      reader_code, session_key)
+    values (#{readerId,jdbcType=INTEGER}, #{readerTypeId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, 
+      #{readerName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=TIMESTAMP}, #{sex,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{expirationTime,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT}, #{overdueNumber,jdbcType=TINYINT}, 
+      #{readerCode,jdbcType=VARCHAR}, #{sessionKey,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hniu.entity.Readers">
+    update tbl_readers
+    set reader_type_id = #{readerTypeId,jdbcType=INTEGER},
+      role_id = #{roleId,jdbcType=INTEGER},
+      reader_name = #{readerName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      sex = #{sex,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=TINYINT},
+      overdue_number = #{overdueNumber,jdbcType=TINYINT},
+      reader_code = #{readerCode,jdbcType=VARCHAR},
+      session_key = #{sessionKey,jdbcType=VARCHAR}
+    where reader_id = #{readerId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select reader_id, reader_type_id, role_id, reader_name, password, wechat, phone, 
+    address, id_card, birthday, sex, create_time, expiration_time, state, overdue_number, 
+    reader_code, session_key
+    from tbl_readers
+    where reader_id = #{readerId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select reader_id, reader_type_id, role_id, reader_name, password, wechat, phone, 
+    address, id_card, birthday, sex, create_time, expiration_time, state, overdue_number, 
+    reader_code, session_key
+    from tbl_readers
+  </select>
+</mapper>

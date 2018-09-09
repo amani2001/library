@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hniu.mapper.PermissionsMapper">
+  <resultMap id="BaseResultMap" type="com.hniu.entity.Permissions">
+    <id column="permission_id" jdbcType="INTEGER" property="permissionId" />
+    <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
+    <result column="permission_str" jdbcType="VARCHAR" property="permissionStr" />
+    <result column="permission_type" jdbcType="TINYINT" property="permissionType" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="order" jdbcType="TINYINT" property="order" />
+    <result column="father_node" jdbcType="INTEGER" property="fatherNode" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_permissions
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hniu.entity.Permissions">
+    insert into tbl_permissions (permission_id, permission_name, permission_str, 
+      permission_type, path, img, 
+      order, father_node)
+    values (#{permissionId,jdbcType=INTEGER}, #{permissionName,jdbcType=VARCHAR}, #{permissionStr,jdbcType=VARCHAR}, 
+      #{permissionType,jdbcType=TINYINT}, #{path,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
+      #{order,jdbcType=TINYINT}, #{fatherNode,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hniu.entity.Permissions">
+    update tbl_permissions
+    set permission_name = #{permissionName,jdbcType=VARCHAR},
+      permission_str = #{permissionStr,jdbcType=VARCHAR},
+      permission_type = #{permissionType,jdbcType=TINYINT},
+      path = #{path,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      order = #{order,jdbcType=TINYINT},
+      father_node = #{fatherNode,jdbcType=INTEGER}
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select permission_id, permission_name, permission_str, permission_type, path, img, 
+    order, father_node
+    from tbl_permissions
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select permission_id, permission_name, permission_str, permission_type, path, img, 
+    order, father_node
+    from tbl_permissions
+  </select>
+</mapper>

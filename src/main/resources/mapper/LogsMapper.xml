@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hniu.mapper.LogsMapper">
+  <resultMap id="BaseResultMap" type="com.hniu.entity.Logs">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="ope_action" jdbcType="VARCHAR" property="opeAction" />
+    <result column="ope_entity" jdbcType="VARCHAR" property="opeEntity" />
+    <result column="ope_detail" jdbcType="VARCHAR" property="opeDetail" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_logs
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hniu.entity.Logs">
+    insert into tbl_logs (id, time, admin_id, 
+      ope_action, ope_entity, ope_detail
+      )
+    values (#{id,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{adminId,jdbcType=INTEGER}, 
+      #{opeAction,jdbcType=VARCHAR}, #{opeEntity,jdbcType=VARCHAR}, #{opeDetail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hniu.entity.Logs">
+    update tbl_logs
+    set time = #{time,jdbcType=TIMESTAMP},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      ope_action = #{opeAction,jdbcType=VARCHAR},
+      ope_entity = #{opeEntity,jdbcType=VARCHAR},
+      ope_detail = #{opeDetail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, time, admin_id, ope_action, ope_entity, ope_detail
+    from tbl_logs
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, time, admin_id, ope_action, ope_entity, ope_detail
+    from tbl_logs
+  </select>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hniu.mapper.BorrowHistorysMapper">
+  <resultMap id="BaseResultMap" type="com.hniu.entity.BorrowHistorys">
+    <id column="history_id" jdbcType="INTEGER" property="historyId" />
+    <result column="reader_id" jdbcType="INTEGER" property="readerId" />
+    <result column="borrow_time" jdbcType="TIMESTAMP" property="borrowTime" />
+    <result column="repay_time" jdbcType="TIMESTAMP" property="repayTime" />
+    <result column="renew" jdbcType="BIT" property="renew" />
+    <result column="overdue" jdbcType="BIT" property="overdue" />
+    <result column="fine" jdbcType="REAL" property="fine" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_borrow_historys
+    where history_id = #{historyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hniu.entity.BorrowHistorys">
+    insert into tbl_borrow_historys (history_id, reader_id, borrow_time, 
+      repay_time, renew, overdue, 
+      fine)
+    values (#{historyId,jdbcType=INTEGER}, #{readerId,jdbcType=INTEGER}, #{borrowTime,jdbcType=TIMESTAMP}, 
+      #{repayTime,jdbcType=TIMESTAMP}, #{renew,jdbcType=BIT}, #{overdue,jdbcType=BIT}, 
+      #{fine,jdbcType=REAL})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hniu.entity.BorrowHistorys">
+    update tbl_borrow_historys
+    set reader_id = #{readerId,jdbcType=INTEGER},
+      borrow_time = #{borrowTime,jdbcType=TIMESTAMP},
+      repay_time = #{repayTime,jdbcType=TIMESTAMP},
+      renew = #{renew,jdbcType=BIT},
+      overdue = #{overdue,jdbcType=BIT},
+      fine = #{fine,jdbcType=REAL}
+    where history_id = #{historyId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select history_id, reader_id, borrow_time, repay_time, renew, overdue, fine
+    from tbl_borrow_historys
+    where history_id = #{historyId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select history_id, reader_id, borrow_time, repay_time, renew, overdue, fine
+    from tbl_borrow_historys
+  </select>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hniu.mapper.CostMapper">
+  <resultMap id="BaseResultMap" type="com.hniu.entity.Cost">
+    <id column="cost_id" jdbcType="INTEGER" property="costId" />
+    <result column="reader_id" jdbcType="INTEGER" property="readerId" />
+    <result column="cost_type" jdbcType="TINYINT" property="costType" />
+    <result column="numeric" jdbcType="REAL" property="numeric" />
+    <result column="pay_type" jdbcType="TINYINT" property="payType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_costs
+    where cost_id = #{costId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hniu.entity.Cost">
+    insert into tbl_costs (cost_id, reader_id, cost_type, 
+      numeric, pay_type, create_time
+      )
+    values (#{costId,jdbcType=INTEGER}, #{readerId,jdbcType=INTEGER}, #{costType,jdbcType=TINYINT}, 
+      #{numeric,jdbcType=REAL}, #{payType,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hniu.entity.Cost">
+    update tbl_costs
+    set reader_id = #{readerId,jdbcType=INTEGER},
+      cost_type = #{costType,jdbcType=TINYINT},
+      numeric = #{numeric,jdbcType=REAL},
+      pay_type = #{payType,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where cost_id = #{costId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select cost_id, reader_id, cost_type, numeric, pay_type, create_time
+    from tbl_costs
+    where cost_id = #{costId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select cost_id, reader_id, cost_type, numeric, pay_type, create_time
+    from tbl_costs
+  </select>
+</mapper>
