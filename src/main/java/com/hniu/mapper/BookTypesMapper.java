@@ -1,16 +1,7 @@
 package com.hniu.mapper;
 
 import com.hniu.entity.BookTypes;
-import java.util.List;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface BookTypesMapper {
-    int deleteByPrimaryKey(Integer bookTypeId);
-
-    int insert(BookTypes record);
-
-    BookTypes selectByPrimaryKey(Integer bookTypeId);
-
-    List<BookTypes> selectAll();
-
-    int updateByPrimaryKey(BookTypes record);
+public interface BookTypesMapper extends Mapper<BookTypes> {
 }

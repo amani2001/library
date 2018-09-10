@@ -1,16 +1,7 @@
 package com.hniu.mapper;
 
 import com.hniu.entity.BorrowHistorys;
-import java.util.List;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface BorrowHistorysMapper {
-    int deleteByPrimaryKey(Integer historyId);
-
-    int insert(BorrowHistorys record);
-
-    BorrowHistorys selectByPrimaryKey(Integer historyId);
-
-    List<BorrowHistorys> selectAll();
-
-    int updateByPrimaryKey(BorrowHistorys record);
+public interface BorrowHistorysMapper extends Mapper<BorrowHistorys> {
 }

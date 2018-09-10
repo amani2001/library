@@ -1,16 +1,7 @@
 package com.hniu.mapper;
 
 import com.hniu.entity.Logs;
-import java.util.List;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface LogsMapper {
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(Logs record);
-
-    Logs selectByPrimaryKey(Integer id);
-
-    List<Logs> selectAll();
-
-    int updateByPrimaryKey(Logs record);
+public interface LogsMapper extends Mapper<Logs> {
 }

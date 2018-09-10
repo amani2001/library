@@ -1,16 +1,7 @@
 package com.hniu.mapper;
 
 import com.hniu.entity.Roles;
-import java.util.List;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface RolesMapper {
-    int deleteByPrimaryKey(Integer roleId);
-
-    int insert(Roles record);
-
-    Roles selectByPrimaryKey(Integer roleId);
-
-    List<Roles> selectAll();
-
-    int updateByPrimaryKey(Roles record);
+public interface RolesMapper extends Mapper<Roles> {
 }

@@ -1,16 +1,7 @@
 package com.hniu.mapper;
 
 import com.hniu.entity.System;
-import java.util.List;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface SystemMapper {
-    int deleteByPrimaryKey(Integer sysId);
-
-    int insert(System record);
-
-    System selectByPrimaryKey(Integer sysId);
-
-    List<System> selectAll();
-
-    int updateByPrimaryKey(System record);
+public interface SystemMapper extends Mapper<System> {
 }

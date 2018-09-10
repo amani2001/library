@@ -1,16 +1,7 @@
 package com.hniu.mapper;
 
 import com.hniu.entity.Cost;
-import java.util.List;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface CostMapper {
-    int deleteByPrimaryKey(Integer costId);
-
-    int insert(Cost record);
-
-    Cost selectByPrimaryKey(Integer costId);
-
-    List<Cost> selectAll();
-
-    int updateByPrimaryKey(Cost record);
+public interface CostMapper extends Mapper<Cost> {
 }

@@ -1,16 +1,7 @@
 package com.hniu.mapper;
 
 import com.hniu.entity.Admin;
-import java.util.List;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface AdminMapper {
-    int deleteByPrimaryKey(Integer adminId);
-
-    int insert(Admin record);
-
-    Admin selectByPrimaryKey(Integer adminId);
-
-    List<Admin> selectAll();
-
-    int updateByPrimaryKey(Admin record);
+public interface AdminMapper extends Mapper<Admin> {
 }
