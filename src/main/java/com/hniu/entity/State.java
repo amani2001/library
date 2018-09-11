@@ -2,12 +2,12 @@ package com.hniu.entity;
 
 import com.hniu.constan.StateCode;
 
-public class State<T> {
+public class State<Object> {
     private String state;
     private String message;
-    private T data;
+    private Object data;
 
-    public State(String state, String message, T data) {
+    public State(String state, String message, Object data) {
         this.state = state;
         this.message = message;
         this.data = data;
@@ -29,11 +29,11 @@ public class State<T> {
         this.message = message;
     }
 
-    public T getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(Object data) {
         this.data = data;
     }
 }

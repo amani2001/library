@@ -2,39 +2,76 @@ package com.hniu.controller;
 
 import com.hniu.constan.StateCode;
 import com.hniu.entity.Admin;
-import com.hniu.exception.PassWordIsNullException;
-import com.hniu.exception.UserNameIsNullException;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.hniu.entity.vo.AdminVo;
+import com.hniu.exception.NotLoginException;
+import com.hniu.exception.PassWordErrorException;
+import com.hniu.exception.SystemErrorException;
+import com.hniu.exception.UserNameExistException;
+import com.hniu.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
 public class AdminController extends Base {
 
-    @PostMapping("/login")
-    public Object login(Admin admin) throws UserNameIsNullException, PassWordIsNullException {
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(admin.getAdminName(), admin.getPassword());
-        try {
-            subject.login(token);
-        } catch (UserNameIsNullException uine) {
-            return packaging(StateCode.USERNAMENOTNULL, token.getUsername());
-        } catch (PassWordIsNullException pine) {
-            return packaging(StateCode.PASSWORDNOTNULL, token.getUsername());
-        } catch (UnknownAccountException uae) {
-            return packaging(StateCode.USERNAMENOTEXIST, token.getUsername());
-        } catch (IncorrectCredentialsException ice) {
-            return packaging(StateCode.PASSWORDMISTAKE, token.getUsername());
-        } catch (LockedAccountException lae) {
-            return packaging(StateCode.USERNAMELOCK, token.getUsername());
-        }
-        return packaging(StateCode.SUCCESS, token.getUsername());
+    @Autowired
+    AdminService as;
+
+    @GetMapping("/admins")
+    public Object selectAll() {
+        List<AdminVo> data = as.selectAllVo();
+        if (data == null || data.isEmpty())
+            return packaging(StateCode.SUCCESS, null);
+        else
+            return packaging(StateCode.SUCCESS, as.selectAllVo());
     }
+
+    @GetMapping("/admins/{id}")
+    public Object selectByPrimaryKey(@PathVariable("id") Integer id) {
+        return packaging(StateCode.SUCCESS, as.selectByPrimaryKeyVo(id));
+    }
+
+    @PostMapping("/admins")
+    public Object insert(Admin admin) {
+        try {
+            return packaging(StateCode.SUCCESS, as.insert(admin));
+        } catch (UserNameExistException e) {
+            return packaging(StateCode.USERNAMEEXIST, admin);
+        } catch (SystemErrorException e) {
+            return packaging(StateCode.FAIL, admin);
+        }
+    }
+
+    @PutMapping("admins/{id}")
+    public Object update(@PathVariable("id") Integer id, Admin admin) {
+        admin.setAdminId(id);
+        return packaging(StateCode.SUCCESS, as.update(admin));
+    }
+
+    @PutMapping("/admins/update_password")
+    public Object updatePassword(String oldPassword, String newPassword) {
+        try {
+            return packaging(StateCode.SUCCESS, as.changePassword(oldPassword, newPassword));
+        } catch (NotLoginException e) {
+            return packaging(StateCode.LOGINAGAIN, null);
+        } catch (PassWordErrorException e) {
+            return packaging(StateCode.PASSWORDMISTAKE, oldPassword);
+        }
+
+    }
+
+    @DeleteMapping("/admins/{id}")
+    public Object delete(@PathVariable("id") Integer id) {
+        int i = as.delete(id);
+        if (i > 0)
+            return packaging(StateCode.SUCCESS, null);
+        else
+            return packaging(StateCode.FAIL, null);
+
+    }
+
 
 }

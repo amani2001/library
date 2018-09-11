@@ -5,7 +5,7 @@ import com.hniu.entity.Roles;
 
 import java.util.List;
 
-public class RoleVo extends Roles {
+public class RolesVo extends Roles {
 
 	private List<Permissions> permissions;
 
@@ -16,5 +16,6 @@ public class RoleVo extends Roles {
 	public void setPermissions(List<Permissions> permissions) {
 		this.permissions = permissions;
 	}
+
 
 }

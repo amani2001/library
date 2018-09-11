@@ -1,6 +1,9 @@
 package com.hniu.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Table(name = "tbl_admins")
 public class Admin {
@@ -9,6 +12,7 @@ public class Admin {
      */
     @Id
     @Column(name = "admin_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer adminId;
 
     /**
@@ -20,13 +24,19 @@ public class Admin {
     /**
      * 联系电话
      */
+    @NotNull
     private String phone;
 
     /**
      * 登陆密码
      */
+    @JsonIgnore
     private String password;
 
+    /**
+     * 盐
+     */
+    @JsonIgnore
     private String salt;
 
     /**
@@ -34,6 +44,18 @@ public class Admin {
      */
     @Column(name = "role_id")
     private Integer roleId;
+
+    public Admin() {
+    }
+
+    public Admin(Integer adminId, String adminName, String phone, String password, String salt, Integer roleId) {
+        this.adminId = adminId;
+        this.adminName = adminName;
+        this.phone = phone;
+        this.password = password;
+        this.salt = salt;
+        this.roleId = roleId;
+    }
 
     /**
      * 获取管理员id

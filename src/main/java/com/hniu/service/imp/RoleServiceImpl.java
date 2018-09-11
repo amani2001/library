@@ -2,8 +2,10 @@ package com.hniu.service.imp;
 
 
 import com.hniu.entity.Roles;
-import com.hniu.entity.vo.RoleVo;
+import com.hniu.entity.vo.RolesVo;
+import com.hniu.mapper.RolesMapper;
 import com.hniu.service.RoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,14 +13,17 @@ import java.util.List;
 @Service
 public class RoleServiceImpl implements RoleService {
 
+    @Autowired
+    RolesMapper rm;
+
     @Override
-    public List<RoleVo> selectAll() {
-        return null;
+    public List<RolesVo> selectAll() {
+        return rm.selectAllVo();
     }
 
     @Override
-    public RoleVo selectByPrimaryKeyVo(Integer roleId) {
-        return null;
+    public RolesVo selectByPrimaryKeyVo(Integer roleId) {
+        return rm.selectByPrimaryKeyVo(roleId);
     }
 
     @Override

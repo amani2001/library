@@ -19,6 +19,10 @@ public class EncryptUtil {
     public static Map<String, String> encryption(String password) {
 
         String salt = UUID.randomUUID().toString().replace("-", "");
+        return encryption(password, salt);
+    }
+
+    public static Map<String, String> encryption(String password, String salt) {
         SimpleHash md = new SimpleHash("MD5", password, salt, 2);
         Map<String, String> map = new HashMap<>();
         map.put("salt", salt);

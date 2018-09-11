@@ -39,7 +39,8 @@ public class ShiroConfig {
     @Bean
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
-        chainDefinition.addPathDefinition("/**", "authc");
+        chainDefinition.addPathDefinition("/druid/**", "anon");
+        chainDefinition.addPathDefinition("/**", "anon");
 
         // or allow basic authentication, but NOT require it.
         // chainDefinition.addPathDefinition("/**", "authcBasic[permissive]");

@@ -1,6 +1,10 @@
 package com.hniu.entity;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Table(name = "tbl_permissions")
 public class Permissions {
@@ -20,6 +24,7 @@ public class Permissions {
     /**
      * 权限字符串
      */
+    @JsonIgnore
     @Column(name = "permission_str")
     private String permissionStr;
 
@@ -192,5 +197,19 @@ public class Permissions {
      */
     public void setFatherNode(Integer fatherNode) {
         this.fatherNode = fatherNode;
+    }
+
+    @Override
+    public String toString() {
+        return "Permissions{" +
+                "permissionId=" + permissionId +
+                ", permissionName='" + permissionName + '\'' +
+                ", permissionStr='" + permissionStr + '\'' +
+                ", permissionType=" + permissionType +
+                ", path='" + path + '\'' +
+                ", img='" + img + '\'' +
+                ", order=" + order +
+                ", fatherNode=" + fatherNode +
+                '}';
     }
 }
