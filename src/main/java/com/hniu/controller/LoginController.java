@@ -25,12 +25,7 @@ public class LoginController extends Base {
     PermissionsService ps;
 
     @PostMapping("/login")
-    public Object login(@Valid Admin admin) throws UserNameIsNullException, PassWordIsNullException {
-        //TODO 参数验证 错误页面替换
-//        admin = new Admin();
-//        admin.setAdminName("root");
-//        admin.setPassword("root");
-
+    public Object login(Admin admin) throws UserNameIsNullException, PassWordIsNullException {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(admin.getAdminName(), admin.getPassword());
         try {

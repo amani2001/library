@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
-import javax.jnlp.PersistenceService;
 import java.util.List;
 
 public class LoginRealm extends AuthorizingRealm {

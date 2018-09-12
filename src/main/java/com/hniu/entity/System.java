@@ -1,7 +1,10 @@
 package com.hniu.entity;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
+@Component
 @Table(name = "tbl_system")
 public class System {
     @Id
@@ -40,6 +43,20 @@ public class System {
      */
     @Column(name = "bar_Name")
     private String barName;
+
+    public System() {
+    }
+
+    public System(Integer sysId, String sysName, String sysImg, Byte pageLine, String appid, String appsecret, String barName) {
+        this.sysId = sysId;
+        this.sysName = sysName;
+        this.sysImg = sysImg;
+        this.pageLine = pageLine;
+        this.appid = appid;
+        this.appsecret = appsecret;
+        this.barName = barName;
+    }
+
 
     /**
      * @return sys_id

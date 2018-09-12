@@ -1,6 +1,5 @@
 package com.hniu.constan;
 
-import sun.security.util.Password;
 
 public enum StateCode {
     SUCCESS("0", "SUCCESS"),

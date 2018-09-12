@@ -2,7 +2,7 @@ package com.hniu.controller;
 
 
 import com.hniu.constan.StateCode;
-import com.hniu.entity.State;
+import com.hniu.entity.wrap.State;
 
 
 public class Base{

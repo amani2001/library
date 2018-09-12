@@ -2,7 +2,7 @@ package com.hniu.controller;
 
 import com.hniu.constan.StateCode;
 import com.hniu.entity.Admin;
-import com.hniu.entity.vo.AdminVo;
+import com.hniu.entity.wrap.PageWrap;
 import com.hniu.exception.NotLoginException;
 import com.hniu.exception.PassWordErrorException;
 import com.hniu.exception.SystemErrorException;
@@ -11,7 +11,6 @@ import com.hniu.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 
 @RestController
@@ -21,12 +20,12 @@ public class AdminController extends Base {
     AdminService as;
 
     @GetMapping("/admins")
-    public Object selectAll() {
-        List<AdminVo> data = as.selectAllVo();
-        if (data == null || data.isEmpty())
-            return packaging(StateCode.SUCCESS, null);
-        else
-            return packaging(StateCode.SUCCESS, as.selectAllVo());
+    public Object selectAll(Integer pageNum, Integer pageSize) {
+        if(pageNum == null){
+            pageNum = 1;
+        }
+        PageWrap data = as.selectAllVo(pageNum, pageSize);
+        return packaging(StateCode.SUCCESS, data);
     }
 
     @GetMapping("/admins/{id}")
@@ -36,6 +35,7 @@ public class AdminController extends Base {
 
     @PostMapping("/admins")
     public Object insert(Admin admin) {
+        admin.setAdminId(null);
         try {
             return packaging(StateCode.SUCCESS, as.insert(admin));
         } catch (UserNameExistException e) {

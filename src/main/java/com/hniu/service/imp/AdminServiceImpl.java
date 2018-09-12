@@ -1,7 +1,10 @@
 package com.hniu.service.imp;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hniu.entity.Admin;
 import com.hniu.entity.vo.AdminVo;
+import com.hniu.entity.wrap.PageWrap;
 import com.hniu.exception.NotLoginException;
 import com.hniu.exception.PassWordErrorException;
 import com.hniu.exception.SystemErrorException;
@@ -25,14 +28,23 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminMapper am;
 
+    @Autowired
+    private com.hniu.entity.System system;
+
     @Override
     public AdminVo selectByPrimaryKeyVo(Integer adminId) {
-        return am.selectByPrimaryKeyVo(adminId);
+       return am.selectByPrimaryKeyVo(adminId);
     }
 
     @Override
-    public List<AdminVo> selectAllVo() {
-        return am.selectAllVo();
+    public PageWrap selectAllVo(Integer pageNum, Integer pageSize) {
+        if(pageSize == null||pageSize == 0){
+            pageSize = system.getPageLine().intValue();
+        }
+        PageHelper.startPage(pageNum, pageSize);
+        List<AdminVo> list = am.selectAllVo();
+        PageInfo pageInfo = new PageInfo(list);
+        return new PageWrap(pageInfo);
     }
 
     @Override

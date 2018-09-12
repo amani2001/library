@@ -19,18 +19,19 @@ public class Admin {
      * 管理员姓名
      */
     @Column(name = "admin_name")
+    @NotNull(message="用户名不能为空")
     private String adminName;
 
     /**
      * 联系电话
      */
-    @NotNull
     private String phone;
 
     /**
      * 登陆密码
      */
     @JsonIgnore
+    @NotNull(message="密码不能为空")
     private String password;
 
     /**

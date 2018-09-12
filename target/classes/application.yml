@@ -35,9 +35,16 @@ shiro:
   loginUrl: /login
   successUrl: /hello
   unauthorizedUrl: /error
+
+pagehelper:
+  page-size-zero: true
+  reasonable: true
 logging:
   level:
-    com.hniu.mapper: debug
+     com.hniu.mapper: debug
+
+
+
 
 
 

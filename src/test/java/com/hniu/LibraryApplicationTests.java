@@ -1,6 +1,8 @@
 package com.hniu;
 
+import com.github.pagehelper.PageHelper;
 import com.hniu.entity.Admin;
+import com.hniu.entity.vo.AdminVo;
 import com.hniu.entity.vo.PermissionsVo;
 import com.hniu.mapper.AdminMapper;
 import com.hniu.mapper.PermissionsMapper;
@@ -19,13 +21,7 @@ import java.util.UUID;
 @SpringBootTest
 public class LibraryApplicationTests {
 
-    @Autowired
-    PermissionsMapper pm;
-
     @Test
     public void hello(){
-        System.out.println(pm.test());
-        List<PermissionsVo> test = pm.test();
-
     }
 }

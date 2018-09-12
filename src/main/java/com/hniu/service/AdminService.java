@@ -1,9 +1,8 @@
 package com.hniu.service;
 
-import java.util.List;
-
 import com.hniu.entity.Admin;
 import com.hniu.entity.vo.AdminVo;
+import com.hniu.entity.wrap.PageWrap;
 import com.hniu.exception.NotLoginException;
 import com.hniu.exception.PassWordErrorException;
 import com.hniu.exception.SystemErrorException;
@@ -15,7 +14,7 @@ public interface AdminService {
 	AdminVo selectByPrimaryKeyVo(Integer adminId);
 
 	// 查询所有用户信息
-	List<AdminVo> selectAllVo();
+	PageWrap selectAllVo(Integer pageNum, Integer pageSize);
 
 	// 修改用户信息
 	int update(Admin admin);
