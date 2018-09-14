@@ -26,33 +26,10 @@
         <result column="order" jdbcType="TINYINT" property="order"/>
         <result column="father_node" jdbcType="INTEGER"
                 property="fatherNode"/>
-        <association property="permissionsVo" column="p_id"
+        <association property="r" column="permission_id"
                      select="com.hniu.mapper.PermissionsMapper.selectByFatherNode"></association>
     </resultMap>
 
-    <resultMap id="Test"
-               type="com.hniu.entity.vo.PermissionsVo">
-        <id column="permission_id" jdbcType="INTEGER" property="permissionId"/>
-        <result column="permission_name" jdbcType="VARCHAR" property="permissionName"/>
-        <result column="permission_str" jdbcType="VARCHAR" property="permissionStr"/>
-        <result column="permission_type" jdbcType="VARCHAR" property="permissionType"/>
-        <result column="path" jdbcType="VARCHAR" property="path"/>
-        <result column="img" jdbcType="TINYINT" property="img"/>
-        <result column="order" jdbcType="TINYINT" property="order"/>
-        <result column="father_node" jdbcType="INTEGER"
-                property="fatherNode"/>
-        <collection  property="permissions" ofType="com.hniu.entity.Permissions" javaType="java.util.List">
-            <id column="permission_id" jdbcType="INTEGER" property="permissionId"/>
-            <result column="permission_name" jdbcType="VARCHAR" property="permissionName"/>
-            <result column="permission_str" jdbcType="VARCHAR" property="permissionStr"/>
-            <result column="permission_type" jdbcType="VARCHAR" property="permissionType"/>
-            <result column="path" jdbcType="VARCHAR" property="path"/>
-            <result column="img" jdbcType="TINYINT" property="img"/>
-            <result column="order" jdbcType="TINYINT" property="order"/>
-            <result column="father_node" jdbcType="INTEGER"
-                    property="fatherNode"/>
-        </collection >
-    </resultMap>
     <select id="selectByFatherNode" resultMap="BaseResultMap"
             parameterType="java.lang.Integer">
 		select permission_id, permission_name, permission_str,permission_type, path, img, `order`,
@@ -69,7 +46,4 @@
 		tbl_permissions where permission_id in (${_parameter})  ORDER BY `order` asc
 	</select>
 
-    <select id="test" resultMap="Test" >
-        select * from tbl_permissions p1 INNER JOIN tbl_permissions p2 ON p1.permission_id = p2.father_node WHERE p1.father_node = 0
-    </select>
 </mapper>

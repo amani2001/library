@@ -8,11 +8,11 @@ com\hniu\realm\LoginRealm.class
 com\hniu\service\imp\BookTypeServiceImpl.class
 com\hniu\mapper\ReaderTypesMapper.class
 com\hniu\service\imp\PermissionsServiceImpl.class
-com\hniu\config\BeanConfig.class
 com\hniu\entity\vo\PermissionsVo.class
 com\hniu\controller\Base.class
 com\hniu\mapper\PermissionsMapper.class
 com\hniu\service\BorrowHistoryService.class
+com\hniu\config\ApplicationConfig.class
 com\hniu\entity\vo\AdminVo.class
 com\hniu\entity\ReaderTypes.class
 com\hniu\service\imp\CirculateServiceImpl.class
@@ -59,6 +59,7 @@ com\hniu\entity\Readers.class
 com\hniu\mapper\SystemMapper.class
 com\hniu\service\SystemService.class
 com\hniu\service\imp\SystemServiceImpl.class
+com\hniu\config\ApplicationConfig$1.class
 com\hniu\config\ShiroConfig.class
 com\hniu\entity\vo\Menu.class
 com\hniu\exception\PassWordErrorException.class

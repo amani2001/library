@@ -47,14 +47,12 @@ public class LoginRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         UsernamePasswordToken uptoken = (UsernamePasswordToken) token;
-        System.out.println(uptoken.getUsername());
-        System.out.println(uptoken.getPassword());
         // 账号为空
         if (StringUtils.isEmpty(uptoken.getUsername())) {
             throw new UserNameIsNullException();
         }
         // 密码为空
-        if (StringUtils.isEmpty(String.valueOf(uptoken.getPassword()))) {
+        if (StringUtils.isEmpty((uptoken.getPassword()))) {
             throw new PassWordIsNullException();
         }
         Example example = new Example(Admin.class);

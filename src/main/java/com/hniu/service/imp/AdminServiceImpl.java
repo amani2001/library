@@ -38,9 +38,10 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public PageWrap selectAllVo(Integer pageNum, Integer pageSize) {
-        if(pageSize == null||pageSize == 0){
+        if(pageSize == null)
             pageSize = system.getPageLine().intValue();
-        }
+        if (pageNum == null)
+            pageNum = 1;
         PageHelper.startPage(pageNum, pageSize);
         List<AdminVo> list = am.selectAllVo();
         PageInfo pageInfo = new PageInfo(list);
@@ -79,6 +80,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin insert(Admin admin) throws SystemErrorException, UserNameExistException {
+        admin.setAdminId(null);
         Example example = new Example(Admin.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("adminName", admin.getAdminName());

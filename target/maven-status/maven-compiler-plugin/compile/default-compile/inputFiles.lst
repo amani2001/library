@@ -36,6 +36,7 @@ E:\library\src\main\java\com\hniu\mapper\BorrowsMapper.java
 E:\library\src\main\java\com\hniu\mapper\CostMapper.java
 E:\library\src\main\java\com\hniu\entity\wrap\State.java
 E:\library\src\main\java\com\hniu\entity\ReaderTypes.java
+E:\library\src\main\java\com\hniu\config\ApplicationConfig.java
 E:\library\src\main\java\com\hniu\mapper\BookStatesMapper.java
 E:\library\src\main\java\com\hniu\entity\Admin.java
 E:\library\src\main\java\com\hniu\service\imp\CostServiceImpl.java
@@ -66,7 +67,6 @@ E:\library\src\main\java\com\hniu\service\imp\BorrowHistoryServiceImpl.java
 E:\library\src\main\java\com\hniu\service\SystemService.java
 E:\library\src\main\java\com\hniu\entity\Logs.java
 E:\library\src\main\java\com\hniu\mapper\BookTypesMapper.java
-E:\library\src\main\java\com\hniu\config\BeanConfig.java
 E:\library\src\main\java\com\hniu\mapper\BorrowHistorysMapper.java
 E:\library\src\main\java\com\hniu\mapper\ReaderTypesMapper.java
 E:\library\src\main\java\com\hniu\exception\PassWordErrorException.java

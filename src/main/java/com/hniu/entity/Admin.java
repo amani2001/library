@@ -30,7 +30,6 @@ public class Admin {
     /**
      * 登陆密码
      */
-    @JsonIgnore
     @NotNull(message="密码不能为空")
     private String password;
 

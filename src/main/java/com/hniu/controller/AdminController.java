@@ -20,10 +20,7 @@ public class AdminController extends Base {
     AdminService as;
 
     @GetMapping("/admins")
-    public Object selectAll(Integer pageNum, Integer pageSize) {
-        if(pageNum == null){
-            pageNum = 1;
-        }
+    public Object selectAll(@RequestBody Integer pageNum, @RequestBody Integer pageSize) {
         PageWrap data = as.selectAllVo(pageNum, pageSize);
         return packaging(StateCode.SUCCESS, data);
     }
@@ -34,8 +31,7 @@ public class AdminController extends Base {
     }
 
     @PostMapping("/admins")
-    public Object insert(Admin admin) {
-        admin.setAdminId(null);
+    public Object insert(@RequestBody Admin admin) {
         try {
             return packaging(StateCode.SUCCESS, as.insert(admin));
         } catch (UserNameExistException e) {
@@ -46,13 +42,13 @@ public class AdminController extends Base {
     }
 
     @PutMapping("admins/{id}")
-    public Object update(@PathVariable("id") Integer id, Admin admin) {
+    public Object update(@PathVariable("id") Integer id, @RequestBody Admin admin) {
         admin.setAdminId(id);
         return packaging(StateCode.SUCCESS, as.update(admin));
     }
 
     @PutMapping("/admins/update_password")
-    public Object updatePassword(String oldPassword, String newPassword) {
+    public Object updatePassword(@RequestBody String oldPassword, @RequestBody String newPassword) {
         try {
             return packaging(StateCode.SUCCESS, as.changePassword(oldPassword, newPassword));
         } catch (NotLoginException e) {

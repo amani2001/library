@@ -15,9 +15,9 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 
 @RestController
 public class LoginController extends Base {
@@ -25,7 +25,7 @@ public class LoginController extends Base {
     PermissionsService ps;
 
     @PostMapping("/login")
-    public Object login(Admin admin) throws UserNameIsNullException, PassWordIsNullException {
+    public Object login(@RequestBody Admin admin) throws UserNameIsNullException, PassWordIsNullException {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(admin.getAdminName(), admin.getPassword());
         try {

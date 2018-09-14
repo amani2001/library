@@ -1,11 +1,15 @@
 package com.hniu.service.imp;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hniu.entity.Admin;
 import com.hniu.entity.Permissions;
+import com.hniu.entity.System;
 import com.hniu.entity.vo.Menu;
-import com.hniu.entity.vo.PermissionsVo;
 import com.hniu.entity.vo.RolesVo;
+import com.hniu.entity.wrap.PageWrap;
 import com.hniu.exception.NotLoginException;
+import com.hniu.mapper.PermissionsMapper;
 import com.hniu.service.PermissionsService;
 import com.hniu.service.RoleService;
 import org.apache.shiro.SecurityUtils;
@@ -19,10 +23,13 @@ import java.util.List;
 public class PermissionsServiceImpl implements PermissionsService {
 
     @Autowired
-    RoleService rs;
+    private RoleService rs;
 
     @Autowired
-    PermissionsService ps;
+    private PermissionsMapper pm;
+
+    @Autowired
+    private System system;
 
     public List<Permissions> selectPermissions(Admin admin) {
         RolesVo role = rs.selectByPrimaryKeyVo(admin.getRoleId());
@@ -50,5 +57,22 @@ public class PermissionsServiceImpl implements PermissionsService {
             }
         }
         return menus;
+    }
+
+    @Override
+    public PageWrap selectAll(Integer pageNum, Integer pageSize) {
+        if(pageSize == null)
+            pageSize = system.getPageLine().intValue();
+        if (pageNum == null)
+            pageNum = 1;
+        PageHelper.startPage(pageNum, pageSize);
+        List<Permissions> list = pm.selectAll();
+        PageInfo pageInfo = new PageInfo(list);
+        return new PageWrap(pageInfo);
+    }
+
+    @Override
+    public Permissions selectPrimaryKey(Integer permissionId) {
+        return pm.selectByPrimaryKey(permissionId);
     }
 }

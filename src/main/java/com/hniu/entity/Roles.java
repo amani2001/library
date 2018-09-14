@@ -1,6 +1,7 @@
 package com.hniu.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
 @Table(name = "tbl_roles")
 public class Roles {
@@ -25,6 +26,7 @@ public class Roles {
     /**
      * 权限ids字符串
      */
+    @Pattern(regexp = "^\\d{1,}(\\,\\d{1,}){1,}\\d{1,}$",message = "格式不匹配，数字数字之间以','分割")
     @Column(name = "permissions_str")
     private String permissionsStr;
 

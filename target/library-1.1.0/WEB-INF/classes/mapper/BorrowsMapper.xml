@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hniu.mapper.BorrowsMapper">
+  <resultMap id="BaseResultMap" type="com.hniu.entity.Borrows">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="borrow_id" jdbcType="INTEGER" property="borrowId" />
+    <result column="borrow_time" jdbcType="TIMESTAMP" property="borrowTime" />
+    <result column="repay_time" jdbcType="TIMESTAMP" property="repayTime" />
+    <result column="renew" jdbcType="BIT" property="renew" />
+    <result column="overdue" jdbcType="BIT" property="overdue" />
+    <result column="reader_id" jdbcType="INTEGER" property="readerId" />
+    <result column="book_state_id" jdbcType="INTEGER" property="bookStateId" />
+    <result column="fine" jdbcType="REAL" property="fine" />
+  </resultMap>
+</mapper>
