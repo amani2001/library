@@ -37,11 +37,13 @@ com\hniu\entity\System.class
 com\hniu\mapper\RolesMapper.class
 com\hniu\service\imp\BookServiceImpl.class
 com\hniu\service\imp\CostServiceImpl.class
+com\hniu\entity\vo\BookTypeMenu.class
 com\hniu\mapper\BookStatesMapper.class
 com\hniu\entity\wrap\PageWrap.class
 com\hniu\service\imp\ReaderTypeServiceImpl.class
 com\hniu\util\EncryptUtil.class
 com\hniu\service\imp\BookStateServiceImpl.class
+com\hniu\controller\BookTypeController.class
 com\hniu\exception\UserNameExistException.class
 com\hniu\mapper\LogsMapper.class
 com\hniu\controller\PermissionsController.class
@@ -74,3 +76,4 @@ com\hniu\entity\Books.class
 com\hniu\entity\Roles.class
 com\hniu\service\BookStateService.class
 com\hniu\exception\SystemErrorException.class
+com\hniu\controller\BookController.class

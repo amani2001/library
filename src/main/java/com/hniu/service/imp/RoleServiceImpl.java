@@ -35,6 +35,7 @@ public class RoleServiceImpl implements RoleService {
         return new PageWrap(pageInfo);
     }
 
+
     @Override
     public RolesVo selectByPrimaryKeyVo(Integer roleId) {
         return rm.selectByPrimaryKeyVo(roleId);

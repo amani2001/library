@@ -8,6 +8,7 @@ import com.hniu.exception.PassWordErrorException;
 import com.hniu.exception.SystemErrorException;
 import com.hniu.exception.UserNameExistException;
 import com.hniu.service.AdminService;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,8 @@ public class AdminController extends Base {
     AdminService as;
 
     @GetMapping("/admins")
-    public Object selectAll(@RequestBody Integer pageNum, @RequestBody Integer pageSize) {
+    public Object selectAll(Integer pageNum,  Integer pageSize) {
+        System.out.println(SecurityUtils.getSubject().getSession().getId());
         PageWrap data = as.selectAllVo(pageNum, pageSize);
         return packaging(StateCode.SUCCESS, data);
     }

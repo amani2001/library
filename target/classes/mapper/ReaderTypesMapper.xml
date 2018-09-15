@@ -12,4 +12,5 @@
     <result column="continue_number" jdbcType="TINYINT" property="continueNumber" />
     <result column="deposit" jdbcType="REAL" property="deposit" />
   </resultMap>
+
 </mapper>

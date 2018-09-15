@@ -10,4 +10,15 @@
     <result column="father_node" jdbcType="VARCHAR" property="fatherNode" />
     <result column="class_number" jdbcType="VARCHAR" property="classNumber" />
   </resultMap>
+
+  <resultMap id="BookTypeMenu" type="com.hniu.entity.vo.BookTypeMenu">
+    <id column="book_type_id" jdbcType="INTEGER" property="bookTypeId" />
+    <result column="book_type_name" jdbcType="VARCHAR" property="bookTypeName" />
+    <result column="father_node" jdbcType="VARCHAR" property="fatherNode" />
+    <result column="class_number" jdbcType="VARCHAR" property="classNumber" />
+  </resultMap>
+
+  <select id="selectAllMenu" resultMap="BookTypeMenu">
+      select book_type_id,book_type_name,father_node,class_number from tbl_book_types
+  </select>
 </mapper>

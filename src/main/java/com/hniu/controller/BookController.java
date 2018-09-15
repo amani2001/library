@@ -1,25 +1,22 @@
 package com.hniu.controller;
 
 import com.hniu.constan.StateCode;
-import com.hniu.entity.Admin;
+import com.hniu.entity.Books;
 import com.hniu.entity.wrap.PageWrap;
-import com.hniu.exception.NotLoginException;
-import com.hniu.exception.PassWordErrorException;
 import com.hniu.exception.SystemErrorException;
-import com.hniu.exception.UserNameExistException;
 import com.hniu.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class BookController extends Base{
+public class BookController extends Base {
 
     @Autowired
     BookService bs;
 
     @GetMapping("/books")
-    public Object selectAll(@RequestBody Integer pageNum, @RequestBody Integer pageSize) {
-        PageWrap data = bs.selectAllVo(pageNum, pageSize);
+    public Object selectAll(Integer pageNum, Integer pageSize) {
+        PageWrap data = bs.selectAll(pageNum, pageSize);
         return packaging(StateCode.SUCCESS, data);
     }
 
@@ -29,14 +26,21 @@ public class BookController extends Base{
     }
 
     @PostMapping("/books")
-    public Object insert(@RequestBody Admin admin) {
-            return packaging(StateCode.SUCCESS, bs.insert(admin));
+    public Object insert(@RequestBody Books books) {
+        try {
+            return packaging(StateCode.SUCCESS, bs.insert(books));
+        } catch (SystemErrorException e) {
+            return packaging(StateCode.FAIL, books);
+        }
     }
 
     @PutMapping("books/{id}")
-    public Object update(@PathVariable("id") Integer id, @RequestBody Admin admin) {
-        admin.setAdminId(id);
-        return packaging(StateCode.SUCCESS, bs.update(admin));
+    public Object update(@PathVariable("id") Integer id, @RequestBody Books books) {
+        books.setBookId(id);
+        if (bs.update(books) > 0)
+            return packaging(StateCode.SUCCESS, books);
+        else
+            return packaging(StateCode.FAIL, books);
     }
 
     @DeleteMapping("/books/{id}")

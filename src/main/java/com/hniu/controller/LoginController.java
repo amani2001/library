@@ -14,8 +14,6 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -24,9 +22,10 @@ public class LoginController extends Base {
     @Autowired
     PermissionsService ps;
 
-    @PostMapping("/login")
-    public Object login(@RequestBody Admin admin) throws UserNameIsNullException, PassWordIsNullException {
+    @GetMapping("/login")
+    public Object login( Admin admin) throws UserNameIsNullException, PassWordIsNullException {
         Subject subject = SecurityUtils.getSubject();
+        System.out.println(SecurityUtils.getSubject().getSession().getId());
         UsernamePasswordToken token = new UsernamePasswordToken(admin.getAdminName(), admin.getPassword());
         try {
             subject.login(token);
@@ -46,6 +45,7 @@ public class LoginController extends Base {
 
     @GetMapping("/menu")
     public Object menu() {
+        System.out.println(SecurityUtils.getSubject().getSession().getId());
         try {
             return packaging(StateCode.SUCCESS, ps.selectMenu());
         } catch (NotLoginException e) {

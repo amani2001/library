@@ -16,6 +16,7 @@ E:\library\src\main\java\com\hniu\entity\Books.java
 E:\library\src\main\java\com\hniu\exception\SystemErrorException.java
 E:\library\src\main\java\com\hniu\realm\LoginRealm.java
 E:\library\src\main\java\com\hniu\service\ReaderService.java
+E:\library\src\main\java\com\hniu\controller\BookTypeController.java
 E:\library\src\main\java\com\hniu\controller\RoleController.java
 E:\library\src\main\java\com\hniu\util\EncryptUtil.java
 E:\library\src\main\java\com\hniu\mapper\SystemMapper.java
@@ -30,6 +31,7 @@ E:\library\src\main\java\com\hniu\exception\UserNameExistException.java
 E:\library\src\main\java\com\hniu\controller\PermissionsController.java
 E:\library\src\main\java\com\hniu\service\ReaderTypeService.java
 E:\library\src\main\java\com\hniu\config\ShiroConfig.java
+E:\library\src\main\java\com\hniu\controller\BookController.java
 E:\library\src\main\java\com\hniu\config\DruidConfig.java
 E:\library\src\main\java\com\hniu\entity\Roles.java
 E:\library\src\main\java\com\hniu\mapper\BorrowsMapper.java
@@ -45,6 +47,7 @@ E:\library\src\main\java\com\hniu\service\RoleService.java
 E:\library\src\main\java\com\hniu\service\imp\BookServiceImpl.java
 E:\library\src\main\java\com\hniu\mapper\BooksMapper.java
 E:\library\src\main\java\com\hniu\mapper\AdminMapper.java
+E:\library\src\main\java\com\hniu\entity\vo\BookTypeMenu.java
 E:\library\src\main\java\com\hniu\exception\PassWordIsNullException.java
 E:\library\src\main\java\com\hniu\service\BookTypeService.java
 E:\library\src\main\java\com\hniu\mapper\PermissionsMapper.java

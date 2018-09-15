@@ -17,7 +17,7 @@ public class RoleController extends Base {
 
     // 查询所有角色
     @GetMapping("/roles")
-    public Object selectAll(@RequestBody Integer pageNum, @RequestBody Integer pageSize) {
+    public Object selectAll(Integer pageNum,Integer pageSize) {
         return packaging(StateCode.SUCCESS, rs.selectAll(pageNum, pageSize));
     }
 

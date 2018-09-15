@@ -2,10 +2,12 @@ package com.hniu;
 
 import com.github.pagehelper.PageHelper;
 import com.hniu.entity.Admin;
+import com.hniu.entity.BookTypes;
 import com.hniu.entity.vo.AdminVo;
 import com.hniu.entity.vo.PermissionsVo;
 import com.hniu.mapper.AdminMapper;
 import com.hniu.mapper.PermissionsMapper;
+import com.hniu.service.imp.BookTypeServiceImpl;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +23,11 @@ import java.util.UUID;
 @SpringBootTest
 public class LibraryApplicationTests {
 
+    @Autowired
+    BookTypeServiceImpl bs;
+
     @Test
     public void hello(){
+        System.out.println( bs.selectMenus());
     }
 }

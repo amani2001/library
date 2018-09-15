@@ -9,6 +9,7 @@ public class Books {
      */
     @Id
     @Column(name = "book_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer bookId;
 
     /**
